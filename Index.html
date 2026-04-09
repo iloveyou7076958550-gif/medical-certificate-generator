@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IIT Delhi Medical Certificate Generator</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      margin: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    .form {
+      width: 30%;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .preview {
+      width: 70%;
+      background: white;
+      padding: 60px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      line-height: 1.8;
+      font-size: 16px;
+      position: relative;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .preview, .preview * {
+        visibility: visible;
+      }
+      .preview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h2>IIT Delhi Medical Certificate Generator</h2>
+
+<div class="container">
+  <div class="form">
+    <label>OPD Number</label>
+    <input id="opd" placeholder="531510">
+
+    <label>Date</label>
+    <input id="date" placeholder="09/04/2026">
+
+    <label>Student ID</label>
+    <input id="id" placeholder="2024BB10307">
+
+    <label>Doctor Name</label>
+    <input id="doctor" placeholder="Dr. Rahul Kumar">
+
+    <label>Patient Name</label>
+    <input id="name" placeholder="VAIBHAV CHAUHAN">
+
+    <label>Disease</label>
+    <input id="disease" placeholder="FEVER">
+
+    <label>Days</label>
+    <input id="days" placeholder="3">
+
+    <label>From Date</label>
+    <input id="from" placeholder="30-01-2026">
+
+    <label>To Date</label>
+    <input id="to" placeholder="01-02-2026">
+
+    <label>Fit Date</label>
+    <input id="fit" placeholder="02-02-2026">
+
+    <button onclick="generate()">Generate</button>
+    <button onclick="window.print()">Download PDF</button>
+  </div>
+
+  <div class="preview" id="preview"></div>
+</div>
+
+<script>
+function generate() {
+  document.getElementById('preview').innerHTML = `
+
+    <div class="header">
+      <img src="/mnt/data/1d4a4f93-0a9e-4058-a89c-df3289dde0ca.png" class="logo">
+      <div style="text-align:center; font-weight:bold; font-size:18px;">
+        INDIAN INSTITUTE OF TECHNOLOGY DELHI<br>
+        <span style="font-size:15px;">I.I.T. HOSPITAL</span>
+      </div>
+    </div>
+
+    <br><br>
+
+    <div>
+      OPD Number: <b>${opd.value}</b><br>
+      Date: <b>${date.value}</b><br>
+      Patient Medical ID No./Student enrollment No.: <b>${id.value}</b>
+    </div>
+
+    <br><br>
+
+    <div style="text-align:center; font-weight:bold;">
+      FORM OF CERTIFICATE FOR LEAVE OR EXTENSION OR COMMUNICATION OF LEAVE AND FOR FITNESS
+    </div>
+
+    <br><br>
+
+    <div>
+      I <b>${doctor.value}</b> after careful examination of the case certify that <b>${name.value}</b> was suffering from <b>${disease.value}</b> and I consider that a period of absence from duty/study for <b>${days.value}</b> day/days with effect from <b>${from.value}</b> to <b>${to.value}</b> was absolutely necessary for the restoration of his/her health.
+
+      <br><br><br>
+
+      I, after careful examination of the case, hereby certify that (Name of patient) <b>${name.value}</b> on restoration of his/her health, is now fit to join service/resume study w.e.f <b>${fit.value}</b>
+    </div>
+
+    <br><br><br>
+
+    <div>
+      Date: <b>${date.value}</b>
+    </div>
+
+    <br><br><br>
+
+    <div style="text-align:center;">
+      This is system generated statement.<br>
+      This is for IIT Delhi Internal use.
+    </div>
+
+  `;
+}
+</script>
+
+</body>
+</html>
